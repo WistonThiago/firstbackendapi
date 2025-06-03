@@ -1,6 +1,6 @@
 # firstbackendapi
 My first API using:
-- Languagens:
+- Languages:
     - Node.js;
     - TypeScript;
 - DB:
