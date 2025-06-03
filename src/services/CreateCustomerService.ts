@@ -1,10 +1,26 @@
-import prismaClient from "../prisma";
+import prismaClient from "../prisma/";
+
+interface CreateCustomerProps{
+    name: string;
+    email: string;
+}
 
 class CreateCustomerService {
-    async execute() {
-        console.log("Route called! 200 OK")
+    async execute({ name, email }: CreateCustomerProps) {
 
-        return { ok: true }
+        if(!name || !email) {
+            throw new Error("Fill in the fields");
+        }
+        
+        const customer = await prismaClient.customer.create({
+            data: {
+                name,
+                email,
+                status: true
+            }
+        })
+
+        return customer
     }
 }
 
