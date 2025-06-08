@@ -10,19 +10,19 @@ class DeleteCostumerService {
             throw new Error("Invalid request!");
         }
 
-        const findCostumer = await prismaClient.customer.findFirst({
+        const findCustomer = await prismaClient.customer.findFirst({
             where: {
                 id: id
             }
         })
 
-        if (!findCostumer) {
+        if (!findCustomer) {
             throw new Error("Customer not found!");
         }
 
         await prismaClient.customer.delete({
             where: {
-                id: findCostumer.id
+                id: findCustomer.id
             }
         })
 
