@@ -11,6 +11,14 @@ class CreateCustomerService {
         if(!name || !email) {
             throw new Error("Fill in the fields");
         }
+
+        const isEmailRepeated = await prismaClient.customer.findFirst({
+            where: {
+                email: email
+            }
+        })
+
+        if (isEmailRepeated) { throw new Error("This e-mail cannot be used!") }
         
         const customer = await prismaClient.customer.create({
             data: {
